@@ -1,0 +1,45 @@
+- related to big data 
+
+webcrawlers - indexing
+
+honestly search engines looks like only easy access info , like rag but diff methodology ,
+
+webCrawler:
+bot that crawls across the World Wide Web to find [search and bring the text ]and index [store in a way for fast retrieval]pages for search engines.
+
+the crawlers store the pages in the index
+
+- web scraping : getting html content
+- parsing and normalization unstructured HTML and get Structured info from it
+- Start with Okapi BM25 : for search algo itself
+
+
+
+Search engine -> librarian pointing to book 
+
+
+
+mainparts:
+data_ingestion : either via api or web crawling
+crawler uses -> diff algos->scan websites and identify content
+ranking : keyword ,metadata
+
+
+
+query-> [keyword,phrases]->list->webpage
+- search algo
+- data to analyze and generate results from 
+
+
+
+
+
+steps :
+1- get the page related to query and related text
+2- Implement page rank algo
+3- indexing [speed up search ]
+4- ui 
+
+
+
+
