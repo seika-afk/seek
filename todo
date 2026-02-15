@@ -1,27 +1,13 @@
-1. Web Crawling :
-    1- Web Crawl according to a query/link ,
-        a. take query and seed link
-    2.then first gather the list of links to be crawled later, 
-        a. store list of links
-    3.then find the text in the crawled webpage ,if there -> list else move on 
-        a. fetch HTML -> Clean that shi , 
-        b. Meaningful text exists -> store in index
-        c. if empty --> skip 
-        d. stop after threshold
-
-"Meaningful text exists"
-bm25 scoring 
-tfidf+cosine similarity
-
-"store in index"
-- inverted index
-- okapi mb25
-- tfidf
+[x] -  webcrawler ->use lib to fetch sites with a query
+[x] - indexing to save pages
+[x] - saving in es
+[x] - fn for query
+[ ]- api for frontend
+//DO REMEMBER THE SEQUENCE OF RUNNING IS :
 
 
-(|a|)query-> fetch page-> extract all links-> put in index
-                -> compute relevancy to query (tfidf,bm25,cosine similarity)
-                ->relevant -> store in index 
-                -> non relevant-> skip
-then query the left links 
 
+1. retrieve.py : Crawl sites and save index in json
+1.5 es.py : start es server
+2. index.py : put in es server
+3. query
