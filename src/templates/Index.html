@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FemEngine</title>
+<style>
+body{
+margin:0;
+font-family:monospace;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color : white;
+background-color:black;
+}
+
+.wrap{
+width:600px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+border:1px solid black;
+outline:none;
+}
+
+#results{
+margin-top:20px;
+border:1px solid black;
+padding:15px;
+min-height:150px;
+text-align:left;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+	<h2>seek</h2>
+<div style="font-size:12px;margin-bottom:15px;">mini search engine</div>
+
+<input type="text" id="q" placeholder="enter query">
+
+<div id="results">waiting...</div>
+</div>
+
+<script>
+let q = document.getElementById("q")
+let results = document.getElementById("results")
+let t
+
+q.addEventListener("input",function(e){
+
+clearTimeout(t)
+let val = e.target.value.trim()
+
+if(!val){
+results.innerHTML="waiting..."
+return
+}
+
+results.innerHTML="searching..."
+
+t=setTimeout(function(){
+
+fetch("/search",{
+method:"POST",
+headers:{ "Content-Type":"application/json" },
+body:JSON.stringify({query:val})
+})
+.then(r=>r.json())
+.then(d=>{
+
+if(!d.results || d.results.length==0){
+results.innerHTML="no results"
+return
+}
+
+let out=""
+d.results.forEach(function(r){
+out+=
+"<div style='margin-bottom:15px'>"+
+"<a href='"+r.url+"' target='_blank'>"+(r.title||r.url)+"</a><br>"+
+"<small>"+r.url+"</small><br>"+
+"<div>"+(r.snippet||"")+"</div>"+
+"</div>"
+})
+
+results.innerHTML=out
+})
+.catch(err=>{
+results.innerHTML="error"
+})
+
+},300)
+
+})
+</script>
+
+</body>
+</html>
+
+
